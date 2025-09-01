@@ -168,10 +168,9 @@
 
 <template id="app-template">
     <!-- 开屏首页 -->
-    <!-- Derek 你好，开屏画面的背景图就在下面这一行代码里 -->
-    <div id="splashPage" class="page flex flex-col justify-end items-center text-center p-8 bg-cover bg-center" style="background-image: url('https://placehold.co/1179x2556/F8D7DA/E1251B?text=Splash%20Screen%0A1179x2556'); height: 100%;">
-        <div class="mb-12 w-full max-w-xs text-white">
-             <h1 class="text-4xl font-bold font-ringside text-shadow-lg">趣赢!当燃卡路‘礼’</h1>
+    <div id="splashPage" class="page flex flex-col justify-end items-center text-center p-8 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1534447677768-64483a0a3a92?q=80&w=2670&auto=format&fit=crop'); height: 100%;">
+        <div class="mb-12 w-full max-w-xs text-white" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+             <h1 class="text-4xl font-bold font-ringside">趣赢!当燃卡路‘礼’</h1>
              <p class="mt-2 text-lg">和最爱的人，做最燃的事！</p>
         </div>
         <button data-action="showPage" data-page="verificationPage" class="w-full max-w-xs bg-white text-red-600 font-bold py-4 px-4 rounded-full shadow-2xl transition-transform transform hover:scale-105 animate-pulse-slow mb-12 font-ringside">
@@ -216,7 +215,7 @@
             <div><h2 class="text-lg font-bold font-ringside">修改报名信息</h2><p class="text-sm opacity-80">调整您的报名选项</p></div><span class="text-2xl">&#9998;</span>
           </button>
     
-          <button data-action="showPage" data-page="badmintonIntroPage" class="w-full text-left p-0 bg-gray-600 text-white rounded-xl shadow-lg flex justify-start items-end hover:opacity-90 transition relative overflow-hidden animate-blink">
+          <button data-action="showPage" data-page="badmintonIntroPage" class="w-full text-left p-0 bg-gray-600 text-white rounded-xl shadow-lg flex justify-start items-end hover:opacity-90 transition relative overflow-hidden h-32">
              <img src="https://images.unsplash.com/photo-1554062235-917b459a456c?q=80&w=2574&auto=format&fit=crop" class="w-full h-full object-cover absolute inset-0">
             <div class="relative p-4 bg-gradient-to-t from-black/60 to-transparent w-full">
                 <h2 class="text-lg font-bold font-ringside">「谁羽争锋」羽毛球大赛</h2>
@@ -311,7 +310,7 @@
     <div id="successPage" class="page">
         <div class="page-content flex flex-col items-center justify-center text-center">
             <div class="w-24 h-24 rounded-full flex items-center justify-center mb-6 mx-auto" style="background-color: var(--lilly-green-light);">
-                <img src="https://placehold.co/192x192/00796B/FFFFFF?text=√" alt="报名成功打勾图标" class="w-16 h-16 rounded-full">
+                <svg class="w-16 h-16 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
             </div>
             <h2 class="text-3xl font-bold font-ringside" style="color: var(--lilly-red);">报名成功!</h2>
             <p class="text-gray-600 mt-2 mb-8">请凭此电子券在现场签到。</p>
@@ -335,7 +334,7 @@
     <div id="highlightsPage" class="page">
         <div class="page-content">
             <div class="relative w-full h-40 rounded-lg overflow-hidden mb-4 shadow-lg">
-                <img src="https://placehold.co/800x370/a78bfa/FFFFFF?text=Event%20Highlights" alt="活动亮点主图" class="w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2670&auto=format&fit=crop" alt="活动亮点主图" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-4">
                     <h2 class="text-3xl font-bold text-white font-ringside">活动亮点</h2>
                     <p class="text-white italic">"动静结合的礼来家庭日世界"</p>
@@ -376,7 +375,7 @@
     <!-- 项目列表页 (模板) -->
     <div id="activityListPage" class="page">
         <div class="page-content">
-             <h2 data-id="activityListTitle" class="text-3xl font-bold mb-6 font-ringside" style="color: var(--lilly-red);"></h2>
+             <h2 data-id="activityListTitle" class="text-3xl font-bold mb-6 font-ringside"></h2>
              <p data-id="activityListDesc" class="text-gray-600 mb-4"></p>
              <div data-id="activityListContainer" class="space-y-4">
                 <!-- Activity items will be injected here -->
@@ -391,7 +390,7 @@
     <div id="itemDetailPage" class="page">
         <div class="page-content">
             <img data-id="itemDetailImage" src="" class="w-full h-48 object-cover rounded-lg mb-4 shadow-md">
-            <h2 data-id="itemDetailTitle" class="text-3xl font-bold mb-4 font-ringside" style="color: var(--lilly-red);"></h2>
+            <h2 data-id="itemDetailTitle" class="text-3xl font-bold mb-4 font-ringside"></h2>
             <p data-id="itemDetailDescription" class="text-gray-600 leading-relaxed"></p>
             <div class="mt-6 bg-gray-100 p-4 rounded-lg">
                 <h3 class="font-bold text-lg text-gray-800 mb-2">规则趣解</h3>
@@ -406,7 +405,7 @@
     <!-- 羽毛球大赛介绍页 -->
     <div id="badmintonIntroPage" class="page">
         <div class="page-content">
-            <img src="https://placehold.co/800x325/4f46e5/FFFFFF?text=Badminton%20Tournament" alt="羽毛球大赛主图" class="w-full h-40 object-cover rounded-lg mb-4 shadow-md">
+            <img src="https://images.unsplash.com/photo-1620246233762-2f618f2191b4?q=80&w=2564&auto=format&fit=crop" alt="羽毛球大赛主图" class="w-full h-40 object-cover rounded-lg mb-4 shadow-md">
             <h2 class="text-3xl font-bold font-ringside" style="color: var(--lilly-red);">「谁羽争锋」羽毛球大赛</h2>
             <p class="text-sm text-gray-500 mb-4">名额有限，先到先得！</p>
             <div class="text-gray-700 space-y-2 mb-6 text-sm">
@@ -452,7 +451,7 @@
     <!-- 羽毛球报名成功页 -->
     <div id="badmintonSuccessPage" class="page">
         <div class="page-content text-center flex flex-col items-center justify-center">
-            <div class="w-24 h-24 rounded-full flex items-center justify-center mb-6 mx-auto" style="background-color: var(--lilly-green-light);"><img src="https://placehold.co/192x192/00796B/FFFFFF?text=√" class="w-16 h-16 rounded-full" alt="报名成功"></div>
+             <div class="w-24 h-24 rounded-full flex items-center justify-center mb-6 mx-auto" style="background-color: var(--lilly-green-light);"><svg class="w-16 h-16 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
             <h2 class="text-3xl font-bold font-ringside" style="color: var(--lilly-red);">大赛报名成功!</h2>
             <p class="text-gray-600 mt-2 mb-8">比赛信息已记录，现场凭姓名签到。</p>
             <div data-id="b-success-info" class="text-left w-full max-w-xs bg-gray-50 p-4 rounded-lg"></div>
@@ -758,7 +757,7 @@
             if (this.state.tournamentRegistrationData) {
                  html += '<div class="mt-2 pt-2 border-t">';
                  html += '<h5 class="font-semibold text-sm">羽毛球大赛报名:</h5><div class="text-xs space-y-1">';
-                 const data = this.state.tournamentRegistrationData;
+                 const data = this.state.tournamentRegistrationData.signup;
                  html += `<p><strong>项目:</strong> ${data.typeDisplay}</p>`;
                  html += `<p><strong>队员1:</strong> ${data.name1} (${data.phone1})</p>`;
                  if (data.name2) {
@@ -942,7 +941,8 @@
                 case 'mixed': typeDisplay = '混合双打'; infoHtml = `<p><strong>项目:</strong> ${typeDisplay}</p><div class="mt-2 pt-2 border-t"><p><strong>队员1:</strong> ${name1} (${phone1})</p></div><div class="mt-1"><p><strong>队员2:</strong> ${name2} (${phone2})</p></div>`; break;
             }
             
-            this.state.tournamentRegistrationData[type] = { typeDisplay, name1, phone1, name2, phone2 }; // Store individual signup
+            // Store the specific signup details under a 'signup' key to avoid conflicts
+            this.state.tournamentRegistrationData.signup = { type, typeDisplay, name1, phone1, name2, phone2 }; 
             this.state.tournamentRegistrationData.counts[type]++; // Increment count
             
             this.getEl('b-success-info').innerHTML = infoHtml;
@@ -960,10 +960,10 @@
             color: "#ca8a04", // amber-600
             description: "亲近自然，放飞童心！这里是全家人的游乐场，从田园小火车到巨型麻将，每一种快乐都无需思考，只需尽情投入。",
             items: [
-                { id: 'fun-1', title: '雀神争霸赛', subtitle: '巨型麻将，全家开杠', desc: '不止是手气，更是霸气！在放大的世界里，运筹帷幄，体验巨型麻将和上海敲麻的乐趣，看谁才是真正的麻坛霸主！', img: 'https://placehold.co/800x445/facc15/333?text=雀神争霸赛', thumb: 'https://placehold.co/128x128/facc15/333?text=趣', rules: '像麻坛高手一样对决！规则：4人一桌，巨型麻将牌，胡牌得分。别碰倒牌堆哦，不然全家笑翻天！限时20min，先胡者胜。' },
-                { id: 'fun-2', title: '疯狂卡丁车', subtitle: '体验速度的快感', desc: '油门踩到底，烦恼全甩掉！来一场全家人的速度与激情，安全赛道，无限尖叫！', img: 'https://placehold.co/800x445/f97316/333?text=疯狂卡丁车', thumb: 'https://placehold.co/128x128/f97316/333?text=趣', rules: '油门轰鸣，弯道超车！规则：安全头盔上阵，赛道限速，撞墙扣分。全家组队，第一个冲线拿大奖！别忘刹车哦~' },
-                { id: 'fun-3', title: '田园小火车', subtitle: '悠闲观光之旅', desc: '呜呜~开往春天的列车发车啦！载上家人，环游童话般的农庄，每一帧都是风景。', img: 'https://placehold.co/800x445/84cc16/333?text=田园小火车', thumb: 'https://placehold.co/128x128/84cc16/333?text=趣', rules: '慢悠悠，看风景！规则：排队上车，坐稳扶好。小火车环游一周，记得跟路边的稻草人打招呼呀！' },
-                { id: 'fun-4', title: '水上碰碰船', subtitle: '夏日清凉大作战', desc: '夏日炎炎，水上开战！驾驶你的小船，撞走所有不开心，清凉一夏！', img: 'https://placehold.co/800x445/38bdf8/333?text=水上碰碰船', thumb: 'https://placehold.co/128x128/38bdf8/333?text=趣', rules: '水上大战三百回合！规则：穿好救生衣，不许站立。目标是撞击对方船只的充气部分，别撞自己人哦！' },
+                { id: 'fun-1', title: '雀神争霸赛', subtitle: '巨型麻将，全家开杠', desc: '不止是手气，更是霸气！在放大的世界里，运筹帷幄，体验巨型麻将和上海敲麻的乐趣，看谁才是真正的麻坛霸主！', img: 'https://placehold.co/800x445/facc15/333', thumb: 'https://placehold.co/128x128/facc15/333', rules: '像麻坛高手一样对决！规则：4人一桌，巨型麻将牌，胡牌得分。别碰倒牌堆哦，不然全家笑翻天！限时20min，先胡者胜。' },
+                { id: 'fun-2', title: '疯狂卡丁车', subtitle: '体验速度的快感', desc: '油门踩到底，烦恼全甩掉！来一场全家人的速度与激情，安全赛道，无限尖叫！', img: 'https://placehold.co/800x445/f97316/333', thumb: 'https://placehold.co/128x128/f97316/333', rules: '油门轰鸣，弯道超车！规则：安全头盔上阵，赛道限速，撞墙扣分。全家组队，第一个冲线拿大奖！别忘刹车哦~' },
+                { id: 'fun-3', title: '田园小火车', subtitle: '悠闲观光之旅', desc: '呜呜~开往春天的列车发车啦！载上家人，环游童话般的农庄，每一帧都是风景。', img: 'https://placehold.co/800x445/84cc16/333', thumb: 'https://placehold.co/128x128/84cc16/333', rules: '慢悠悠，看风景！规则：排队上车，坐稳扶好。小火车环游一周，记得跟路边的稻草人打招呼呀！' },
+                { id: 'fun-4', title: '水上碰碰船', subtitle: '夏日清凉大作战', desc: '夏日炎炎，水上开战！驾驶你的小船，撞走所有不开心，清凉一夏！', img: 'https://placehold.co/800x445/38bdf8/333', thumb: 'https://placehold.co/128x128/38bdf8/333', rules: '水上大战三百回合！规则：穿好救生衣，不许站立。目标是撞击对方船只的充气部分，别撞自己人哦！' },
             ]
         },
         winListPage: {
@@ -971,13 +971,13 @@
             color: "#dc2626", // red-600
             description: "团队集结，为荣誉而战！这里是挥洒汗水、燃烧卡路里的竞技场。每一次协作，每一次冲刺，都是团队精神最燃的证明！",
             items: [
-                { id: 'win-1', title: '进击的跳远', subtitle: '运气与勇气的对决', desc: '狭路相逢勇者胜！一步一跳，一猜一决，通往胜利的路上，不止需要大长腿，更需要好运气！', img: 'https://placehold.co/800x445/ef4444/333?text=进击的跳远', thumb: 'https://placehold.co/128x128/ef4444/333?text=赢', rules: '跳到“对手”面前，石头剪刀布！规则：输了就换队友从起点重来，赢了继续跳。谁先占领对方起点区谁就赢！' },
-                { id: 'win-2', title: '巨型排球对抗赛', subtitle: '超乎想象的团队乐趣', desc: '团结就是力量！面对这个庞然大物，每一次托举都凝聚着团队的心跳。得分的瞬间，燃爆全场！', img: 'https://placehold.co/800x445/f97316/333?text=巨型排球', thumb: 'https://placehold.co/128x128/f97316/333?text=赢', rules: '这个排球有点大！规则：团队协作，把球拍过网，落地得分。小心，别被球砸到，它真的很大！' },
-                { id: 'win-3', title: '木头人匹克球', subtitle: '从解救队友开始', desc: '从“被封印”到“绝地反击”！蹲下是积蓄力量，起身是扭转乾坤。来吧，解锁你的自由，赢下这场翻身仗！', img: 'https://placehold.co/800x445/f59e0b/333?text=匹克球', thumb: 'https://placehold.co/128x128/f59e0b/333?text=赢', rules: '解救你的“木头人”队友！规则：发球方需要先让蹲着的队友接到球才能解锁。全员解锁后，进入正常得分模式。' },
-                { id: 'win-4', title: '足球斯诺克', subtitle: '大力出奇迹', desc: '当绿茵场遇上台球桌，用脚法代替巧劲！精准推杆，大力抽射，你就是下一个“黄金右脚”斯诺克大师！', img: 'https://placehold.co/800x445/10b981/333?text=足球斯诺克', thumb: 'https://placehold.co/128x128/10b981/333?text=赢', rules: '用脚踢的斯诺克！规则：选择纯色或花色球，用白色主球把你的所有球踢进洞，最后踢黑八。小心别犯规哦！' },
-                { id: 'win-5', title: '动物赛跑', subtitle: '萌宠总动员', desc: '超级萌宠大暴走！拿起你的芭蕉扇，看看谁才是真正的“赶G人”。这不仅是速度赛，更是策略与耐心的考验！', img: 'https://placehold.co/800x445/6366f1/333?text=动物赛跑', thumb: 'https://placehold.co/128x128/6366f1/333?text=赢', rules: '快扇风，让你的小鸡快跑！规则：只能用扇子扇气球前进，手碰到就犯规啦。最先到达终点的队伍获胜！' },
-                { id: 'win-6', title: '投球挑战', subtitle: '一击即中赢大奖', desc: '屏息凝神，就现在！每一次抛物线都承载着赢得大奖的希望。三球定胜负，看看你能抱走几等奖？', img: 'https://placehold.co/800x445/8b5cf6/333?text=投球挑战', thumb: 'https://placehold.co/128x128/8b5cf6/333?text=赢', rules: '夜市经典，实力挑战！规则：每人3个球，投进指定数量的桶里就能拿走对应的奖品。老板，拿那个最大的娃娃！' },
-                { id: 'win-7', title: '采摘接力赛', subtitle: '奔跑吧，都市农夫', desc: '都市农夫，集结！根据神秘任务卡，冲向田野，寻找最新鲜的战利品。速度最快的队伍，将赢得丰收的荣耀！', img: 'https://placehold.co/800x445/ec4899/333?text=采摘接力赛', thumb: 'https://placehold.co/128x128/ec4899/333?text=赢', rules: '按图索骥，全速前进！规则：根据任务卡上的蔬菜图片，以最快速度采摘到指定种类和数量的蔬菜，交给队友，用时最短的队伍获胜。' },
+                { id: 'win-1', title: '进击的跳远', subtitle: '运气与勇气的对决', desc: '狭路相逢勇者胜！一步一跳，一猜一决，通往胜利的路上，不止需要大长腿，更需要好运气！', img: 'https://placehold.co/800x445/ef4444/333', thumb: 'https://placehold.co/128x128/ef4444/333', rules: '跳到“对手”面前，石头剪刀布！规则：输了就换队友从起点重来，赢了继续跳。谁先占领对方起点区谁就赢！' },
+                { id: 'win-2', title: '巨型排球对抗赛', subtitle: '超乎想象的团队乐趣', desc: '团结就是力量！面对这个庞然大物，每一次托举都凝聚着团队的心跳。得分的瞬间，燃爆全场！', img: 'https://placehold.co/800x445/f97316/333', thumb: 'https://placehold.co/128x128/f97316/333', rules: '这个排球有点大！规则：团队协作，把球拍过网，落地得分。小心，别被球砸到，它真的很大！' },
+                { id: 'win-3', title: '木头人匹克球', subtitle: '从解救队友开始', desc: '从“被封印”到“绝地反击”！蹲下是积蓄力量，起身是扭转乾坤。来吧，解锁你的自由，赢下这场翻身仗！', img: 'https://placehold.co/800x445/f59e0b/333', thumb: 'https://placehold.co/128x128/f59e0b/333', rules: '解救你的“木头人”队友！规则：发球方需要先让蹲着的队友接到球才能解锁。全员解锁后，进入正常得分模式。' },
+                { id: 'win-4', title: '足球斯诺克', subtitle: '大力出奇迹', desc: '当绿茵场遇上台球桌，用脚法代替巧劲！精准推杆，大力抽射，你就是下一个“黄金右脚”斯诺克大师！', img: 'https://placehold.co/800x445/10b981/333', thumb: 'https://placehold.co/128x128/10b981/333', rules: '用脚踢的斯诺克！规则：选择纯色或花色球，用白色主球把你的所有球踢进洞，最后踢黑八。小心别犯规哦！' },
+                { id: 'win-5', title: '动物赛跑', subtitle: '萌宠总动员', desc: '超级萌宠大暴走！拿起你的芭蕉扇，看看谁才是真正的“赶G人”。这不仅是速度赛，更是策略与耐心的考验！', img: 'https://placehold.co/800x445/6366f1/333', thumb: 'https://placehold.co/128x128/6366f1/333', rules: '快扇风，让你的小鸡快跑！规则：只能用扇子扇气球前进，手碰到就犯规啦。最先到达终点的队伍获胜！' },
+                { id: 'win-6', title: '投球挑战', subtitle: '一击即中赢大奖', desc: '屏息凝神，就现在！每一次抛物线都承载着赢得大奖的希望。三球定胜负，看看你能抱走几等奖？', img: 'https://placehold.co/800x445/8b5cf6/333', thumb: 'https://placehold.co/128x128/8b5cf6/333', rules: '夜市经典，实力挑战！规则：每人3个球，投进指定数量的桶里就能拿走对应的奖品。老板，拿那个最大的娃娃！' },
+                { id: 'win-7', title: '采摘接力赛', subtitle: '奔跑吧，都市农夫', desc: '都市农夫，集结！根据神秘任务卡，冲向田野，寻找最新鲜的战利品。速度最快的队伍，将赢得丰收的荣耀！', img: 'https://placehold.co/800x445/ec4899/333', thumb: 'https://placehold.co/128x128/ec4899/333', rules: '按图索骥，全速前进！规则：根据任务卡上的蔬菜图片，以最快速度采摘到指定种类和数量的蔬菜，交给队友，用时最短的队伍获胜。' },
             ]
         },
         diyListPage: {
@@ -985,9 +985,9 @@
             color: "#8b5cf6", // violet-500
             description: "静下心，与家人共创温馨。这里是释放创意的艺术天地。亲手制作一件小物，把家庭日的专属回忆和温度一起带回家。",
             items: [
-                 { id: 'diy-1', title: '埃及马赛克灯', subtitle: '制作你的专属艺术品', desc: '亲手拼贴五彩斑斓的玻璃片，在光影交错中，打造一盏充满异域风情的土耳其马赛克灯。', img: 'https://placehold.co/800x445/c084fc/333?text=马赛克灯', thumb: 'https://placehold.co/128x128/c084fc/333?text=作', rules: '体验土耳其的浪漫！规则：领取材料包，按照图纸或自由发挥，将彩色玻璃片粘贴在灯罩上，最后由工作人员帮你灌浆固定。' },
-                 { id: 'diy-2', title: '手绘风铃', subtitle: '描绘夏日的声音', desc: '用画笔在清脆的玻璃风铃上描绘心情，创作一个独一无二的夏日风铃，让清风带去你的祝福。', img: 'https://placehold.co/800x445/a78bfa/333?text=手绘风铃', thumb: 'https://placehold.co/128x128/a78bfa/333?text=作', rules: '画出夏天的声音！规则：选择你喜欢的玻璃风铃，用特制颜料在上面作画。画完后自然风干，就可以带走这份独一无二的纪念品。' },
-                 { id: 'diy-3', title: '花草纸灯笼', subtitle: '点亮自然之美', desc: '将自然的花草融入传统纸张，亲手糊制一个散发着淡淡清香的灯笼，点亮温馨的夜晚。', img: 'https://placehold.co/800x445/7c3aed/333?text=花草纸灯笼', thumb: 'https://placehold.co/128x128/7c3aed/333?text=作', rules: '把大自然包进灯里！规则：先用竹篾搭好灯笼骨架，再将带有美丽花草的纸张小心地糊在骨架上。一个古色古香的艺术品就诞生了。' },
+                 { id: 'diy-1', title: '埃及马赛克灯', subtitle: '制作你的专属艺术品', desc: '亲手拼贴五彩斑斓的玻璃片，在光影交错中，打造一盏充满异域风情的土耳其马赛克灯。', img: 'https://placehold.co/800x445/c084fc/333', thumb: 'https://placehold.co/128x128/c084fc/333', rules: '体验土耳其的浪漫！规则：领取材料包，按照图纸或自由发挥，将彩色玻璃片粘贴在灯罩上，最后由工作人员帮你灌浆固定。' },
+                 { id: 'diy-2', title: '手绘风铃', subtitle: '描绘夏日的声音', desc: '用画笔在清脆的玻璃风铃上描绘心情，创作一个独一无二的夏日风铃，让清风带去你的祝福。', img: 'https://placehold.co/800x445/a78bfa/333', thumb: 'https://placehold.co/128x128/a78bfa/333', rules: '画出夏天的声音！规则：选择你喜欢的玻璃风铃，用特制颜料在上面作画。画完后自然风干，就可以带走这份独一无二的纪念品。' },
+                 { id: 'diy-3', title: '花草纸灯笼', subtitle: '点亮自然之美', desc: '将自然的花草融入传统纸张，亲手糊制一个散发着淡淡清香的灯笼，点亮温馨的夜晚。', img: 'https://placehold.co/800x445/7c3aed/333', thumb: 'https://placehold.co/128x128/7c3aed/333', rules: '把大自然包进灯里！规则：先用竹篾搭好灯笼骨架，再将带有美丽花草的纸张小心地糊在骨架上。一个古色古香的艺术品就诞生了。' },
             ]
         },
     };
@@ -998,7 +998,4 @@
 </script>
 </body>
 </html>
-
-
-
 
