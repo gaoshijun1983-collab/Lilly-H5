@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>礼来家庭日H5交互式原型</title>
+    <title>礼来家庭日</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,16 +17,27 @@
             --lilly-green-dark: #00796b;
         }
 
+        /* Use the full viewport height for the app container */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Inter', 'Helvetica Neue', 'Helvetica', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
-            background-color: #374151; /* gray-700 */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 2rem;
-            flex-wrap: wrap;
-            gap: 2rem;
+        }
+
+        #app-container {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            position: relative; /* For modal positioning */
+        }
+        
+        #app-container::-webkit-scrollbar {
+            display: none;  
         }
 
         .font-ringside {
@@ -34,63 +45,13 @@
             font-weight: 700;
         }
 
-        /* Phone Frame Styles */
-        .phone-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-        .phone-label {
-            font-weight: 600;
-            color: #d1d5db; /* gray-300 */
-        }
-        .phone-screen {
-            width: 100%;
-            height: 100%;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            position: relative; /* For modal positioning */
-        }
-        .phone-screen::-webkit-scrollbar {
-            display: none;  
-        }
-        
-        /* iPhone Frame Simulation */
-        .iphone-frame {
-            width: 393px;
-            height: 852px;
-            border: 12px solid black;
-            border-radius: 54px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            position: relative;
-            background: #fcfcfc;
-            overflow: hidden;
-            padding: 2px;
-            box-sizing: border-box;
-        }
-        .iphone-frame::before {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 28px;
-            background: black;
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
-            z-index: 100;
-        }
-        .iphone-frame .phone-screen {
-            border-radius: 42px;
-        }
-
         .page {
             display: none;
             animation: fadeIn 0.5s;
             min-height: 100%;
             flex-direction: column;
+            width: 100%;
+            box-sizing: border-box;
         }
         .page-content {
             flex-grow: 1;
@@ -130,7 +91,7 @@
 
         /* Custom Modal Styles */
         .custom-modal-overlay {
-            position: absolute;
+            position: fixed; /* Use fixed to cover the whole viewport */
             top: 0; left: 0; right: 0; bottom: 0;
             background-color: rgba(0, 0, 0, 0.5);
             display: flex;
@@ -170,21 +131,28 @@
             margin-bottom: 1.5rem;
         }
 
+        /* Sticky bottom bar adjustment for full screen */
+        .sticky-footer {
+             position: sticky;
+             bottom: 0;
+             background-color: white;
+             padding: 0.5rem 1.5rem 1rem; /* Adjust padding as needed */
+             border-top: 1px solid #e5e7eb;
+             width: 100%;
+             box-sizing: border-box;
+        }
+
     </style>
 </head>
 <body>
-    <div class="phone-container">
-        <div class="phone-label">iPhone 14 Pro</div>
-        <div id="iphone-app" class="iphone-frame">
-            <div class="phone-screen bg-white">
-                <!-- App content will be injected here -->
-            </div>
-        </div>
+    <!-- The main container for the app, taking up the full screen -->
+    <div id="app-container" class="bg-white">
+        <!-- App content will be injected here by script -->
     </div>
     
 <template id="app-template">
     <!-- 开屏首页 -->
-    <div id="splashPage" class="page flex flex-col justify-end items-center text-center p-8 bg-cover bg-center" style="background-image: url('https://placehold.co/393x852/FBCFC8/E1251B?text=Lilly+Family+Day'); height: 100%;">
+    <div id="splashPage" class="page flex flex-col justify-end items-center text-center p-8 bg-cover bg-center" style="background-image: url('https://placehold.co/400x850/FBCFC8/E1251B?text=Lilly+Family+Day'); height: 100%;">
          <div class="mb-auto pt-24 text-white">
             <h1 class="text-4xl font-bold font-ringside" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.4);">趣赢!当燃卡路‘礼’</h1>
             <p class="mt-4 text-lg font-semibold" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.4);">和最爱的人，做最燃的事！</p>
@@ -214,7 +182,7 @@
     <!-- 模块二：H5 首页 -->
     <div id="homePage" class="page flex flex-col">
       <header class="text-center relative">
-        <img src="https://placehold.co/393x283/E1251B/FFFFFF?text=Welcome!" alt="礼来家庭日活动主视觉" class="w-full">
+        <img src="https://placehold.co/400x280/E1251B/FFFFFF?text=Welcome!" alt="礼来家庭日活动主视觉" class="w-full">
       </header>
     
       <main class="p-6 space-y-4 flex-grow flex flex-col pb-24">
@@ -243,13 +211,12 @@
             </button>
           </div>
         </div>
-    
-        <div class="sticky bottom-0 bg-white pt-2 pb-4 -mx-6 px-6">
+      </main>
+      <div class="sticky-footer">
           <button data-action="showMyBookings" class="w-full p-5 lilly-button-green rounded-xl text-center hover:opacity-90 transition font-semibold shadow-lg">
             我的报名（查看凭证）
           </button>
-        </div>
-      </main>
+      </div>
     </div>
     
     <!-- 模块三：报名登记流程 -->
@@ -310,7 +277,7 @@
               </button>
           </div>
       </div>
-      <div class="sticky bottom-0 bg-white pt-2 pb-4 -mx-6 px-6 border-t">
+      <div class="sticky-footer">
           <button data-action="showPage" data-page="homePage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">
               返回首页
           </button>
@@ -334,7 +301,7 @@
                  <!-- Booking details will be injected here -->
             </div>
         </div>
-        <div class="sticky bottom-0 bg-white pt-2 pb-4 w-full -mx-6 px-6 border-t">
+        <div class="sticky-footer">
              <button data-action="showPage" data-page="homePage" class="w-full p-4 lilly-button rounded-xl text-center hover:opacity-90 transition font-semibold">
                  返回首页
              </button>
@@ -367,7 +334,7 @@
                  </div>
             </div>
         </div>
-        <div class="sticky bottom-0 bg-white pt-2 pb-4 -mx-6 px-6 border-t">
+        <div class="sticky-footer">
             <button data-action="showPage" data-page="homePage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">
                 返回首页
             </button>
@@ -380,19 +347,101 @@
     <div id="diyListPage" class="page"></div>
 
     <!-- 项目详情页模板 -->
-    <div id="itemDetailPage" class="page"><div class="page-content p-6"><img data-id="itemDetailImage" src="" class="w-full h-48 object-cover rounded-lg mb-4"><h2 data-id="itemDetailTitle" class="text-3xl font-bold mb-4 font-ringside" style="color: var(--lilly-red);"></h2><p data-id="itemDetailDescription" class="text-gray-600 leading-relaxed"></p><div class="mt-6 bg-gray-100 p-4 rounded-lg"><h3 class="font-bold text-lg text-gray-800 mb-2">规则趣解</h3><p data-id="itemDetailRules" class="text-gray-600 text-sm"></p></div></div><div class="sticky bottom-0 bg-white pt-2 pb-4 -mx-6 px-6 border-t"><button data-id="itemDetailBackButton" data-action="showPage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">返回列表</button></div></div>
+    <div id="itemDetailPage" class="page">
+        <div class="page-content p-6">
+            <img data-id="itemDetailImage" src="" class="w-full h-48 object-cover rounded-lg mb-4">
+            <h2 data-id="itemDetailTitle" class="text-3xl font-bold mb-4 font-ringside" style="color: var(--lilly-red);"></h2>
+            <p data-id="itemDetailDescription" class="text-gray-600 leading-relaxed"></p>
+            <div class="mt-6 bg-gray-100 p-4 rounded-lg">
+                <h3 class="font-bold text-lg text-gray-800 mb-2">规则趣解</h3>
+                <p data-id="itemDetailRules" class="text-gray-600 text-sm"></p>
+            </div>
+        </div>
+        <div class="sticky-footer">
+            <button data-id="itemDetailBackButton" data-action="showPage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">返回列表</button>
+        </div>
+    </div>
     
     <!-- 羽毛球大赛介绍页 -->
-    <div id="badmintonIntroPage" class="page"><div class="page-content p-6"><img src="https://placehold.co/345x140/0284C7/FFFFFF?text=Badminton" alt="羽毛球大赛主图" class="w-full h-40 object-cover rounded-lg mb-4"><h2 class="text-3xl font-bold font-ringside" style="color: var(--lilly-red);">「谁羽争锋」羽毛球大赛</h2><p class="text-sm text-gray-500 mb-4">名额有限，先到先得！</p><div class="text-gray-700 space-y-2 mb-6 text-sm"><p><strong>比赛时间：</strong>下午</p><p><strong>比赛项目：</strong>男子单打、女子单打、混合双打</p><p><strong>报名须知：</strong>所有员工、家属、朋友均可报名。混双项目可为您的搭档代填资料。</p></div><h3 class="text-xl font-bold text-gray-800 mb-4 font-ringside">比赛报名通道</h3><div class="space-y-4">
-        <div data-action="showPage" data-page="badmintonRegisterPage_mens" class="flex items-center justify-between bg-blue-100 p-4 rounded-lg cursor-pointer hover:bg-blue-200"><div><p class="font-bold text-blue-800 font-ringside">男子单打</p><p class="text-sm text-blue-700">英雄集结，一战封王</p></div><div class="text-right text-sm"><p class="font-semibold text-blue-800">已报名: <span data-id="mens_count">0</span></p><p class="text-xs text-blue-600">剩余: <span data-id="mens_remain">16</span></p></div></div>
-        <div data-action="showPage" data-page="badmintonRegisterPage_womens" class="flex items-center justify-between bg-pink-100 p-4 rounded-lg cursor-pointer hover:bg-pink-200"><div><p class="font-bold text-pink-800 font-ringside">女子单打</p><p class="text-sm text-pink-700">铿锵玫瑰，赛场绽放</p></div><div class="text-right text-sm"><p class="font-semibold text-pink-800">已报名: <span data-id="womens_count">0</span></p><p class="text-xs text-pink-600">剩余: <span data-id="womens_remain">16</span></p></div></div>
-        <div data-action="showPage" data-page="badmintonRegisterPage_mixed" class="flex items-center justify-between bg-purple-100 p-4 rounded-lg cursor-pointer hover:bg-purple-200"><div><p class="font-bold text-purple-800 font-ringside">混合双打</p><p class="text-sm text-purple-700">最佳拍档，默契致胜</p></div><div class="text-right text-sm"><p class="font-semibold text-purple-800">已报名: <span data-id="mixed_count">0</span></p><p class="text-xs text-purple-600">剩余: <span data-id="mixed_remain">16</span></p></div></div>
-    </div><button data-action="showPage" data-page="badmintonSignupsPage" class="w-full mt-4 p-4 bg-green-500 text-white rounded-xl">查看报名情况表</button></div><div class="sticky bottom-0 bg-white pt-2 pb-4 -mx-6 px-6 border-t"><button data-action="showPage" data-page="homePage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">返回首页</button></div></div>
+    <div id="badmintonIntroPage" class="page">
+        <div class="page-content p-6">
+            <img src="https://placehold.co/345x140/0284C7/FFFFFF?text=Badminton" alt="羽毛球大赛主图" class="w-full h-40 object-cover rounded-lg mb-4">
+            <h2 class="text-3xl font-bold font-ringside" style="color: var(--lilly-red);">「谁羽争锋」羽毛球大赛</h2>
+            <p class="text-sm text-gray-500 mb-4">名额有限，先到先得！</p>
+            <div class="text-gray-700 space-y-2 mb-6 text-sm">
+                <p><strong>比赛时间：</strong>下午</p>
+                <p><strong>比赛项目：</strong>男子单打、女子单打、混合双打</p>
+                <p><strong>报名须知：</strong>所有员工、家属、朋友均可报名。混双项目可为您的搭档代填资料。</p>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 font-ringside">比赛报名通道</h3>
+            <div class="space-y-4">
+                <div data-action="showPage" data-page="badmintonRegisterPage_mens" class="flex items-center justify-between bg-blue-100 p-4 rounded-lg cursor-pointer hover:bg-blue-200"><div><p class="font-bold text-blue-800 font-ringside">男子单打</p><p class="text-sm text-blue-700">英雄集结，一战封王</p></div><div class="text-right text-sm"><p class="font-semibold text-blue-800">已报名: <span data-id="mens_count">0</span></p><p class="text-xs text-blue-600">剩余: <span data-id="mens_remain">16</span></p></div></div>
+                <div data-action="showPage" data-page="badmintonRegisterPage_womens" class="flex items-center justify-between bg-pink-100 p-4 rounded-lg cursor-pointer hover:bg-pink-200"><div><p class="font-bold text-pink-800 font-ringside">女子单打</p><p class="text-sm text-pink-700">铿锵玫瑰，赛场绽放</p></div><div class="text-right text-sm"><p class="font-semibold text-pink-800">已报名: <span data-id="womens_count">0</span></p><p class="text-xs text-pink-600">剩余: <span data-id="womens_remain">16</span></p></div></div>
+                <div data-action="showPage" data-page="badmintonRegisterPage_mixed" class="flex items-center justify-between bg-purple-100 p-4 rounded-lg cursor-pointer hover:bg-purple-200"><div><p class="font-bold text-purple-800 font-ringside">混合双打</p><p class="text-sm text-purple-700">最佳拍档，默契致胜</p></div><div class="text-right text-sm"><p class="font-semibold text-purple-800">已报名: <span data-id="mixed_count">0</span></p><p class="text-xs text-purple-600">剩余: <span data-id="mixed_remain">16</span></p></div></div>
+            </div>
+            <button data-action="showPage" data-page="badmintonSignupsPage" class="w-full mt-4 p-4 bg-green-500 text-white rounded-xl">查看报名情况表</button>
+        </div>
+        <div class="sticky-footer">
+            <button data-action="showPage" data-page="homePage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">返回首页</button>
+        </div>
+    </div>
 
     <!-- 羽毛球大赛报名表单页 -->
-    <div id="badmintonRegisterPage_mens" class="page p-6 badminton-reg-page"><div class="page-content"><h2 class="text-3xl font-bold mb-6 font-ringside" style="color: var(--lilly-red);">男子单打报名</h2><form class="space-y-4" data-type="mens"><p class="text-sm text-gray-600">请填写您的参赛信息。</p><input type="text" placeholder="姓名" name="name1" class="w-full px-4 py-3 border-2 rounded-lg" required><input type="number" placeholder="电话" name="phone1" class="w-full px-4 py-3 border-2 rounded-lg" required><button type="submit" class="w-full mt-4 lilly-button font-bold py-3 rounded-lg hover:opacity-90">确认报名</button></form></div><div class="sticky bottom-0 bg-white pt-2 pb-4 -mx-6 px-6 border-t"><button data-action="showPage" data-page="badmintonIntroPage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">返回大赛介绍</button></div></div>
-    <div id="badmintonRegisterPage_womens" class="page p-6 badminton-reg-page"><div class="page-content"><h2 class="text-3xl font-bold mb-6 font-ringside" style="color: var(--lilly-red);">女子单打报名</h2><form class="space-y-4" data-type="womens"><p class="text-sm text-gray-600">请填写您的参赛信息。</p><input type="text" placeholder="姓名" name="name1" class="w-full px-4 py-3 border-2 rounded-lg" required><input type="number" placeholder="电话" name="phone1" class="w-full px-4 py-3 border-2 rounded-lg" required><button type="submit" class="w-full mt-4 lilly-button font-bold py-3 rounded-lg hover:opacity-90" style="background-color: #ec4899;">确认报名</button></form></div><div class="sticky bottom-0 bg-white pt-2 pb-4 -mx-6 px-6 border-t"><button data-action="showPage" data-page="badmintonIntroPage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">返回大赛介绍</button></div></div>
-    <div id="badmintonRegisterPage_mixed" class="page p-6 badminton-reg-page"><div class="page-content"><h2 class="text-3xl font-bold mb-6 font-ringside" style="color: var(--lilly-red);">混合双打报名</h2><form class="space-y-6" data-type="mixed"><div><label class="font-semibold text-gray-700">队员一信息</label><div class="space-y-3 mt-2 p-4 border rounded-lg"><input type="text" placeholder="姓名" name="name1" class="w-full px-4 py-3 border-2 rounded-lg" required><input type="number" placeholder="电话" name="phone1" class="w-full px-4 py-3 border-2 rounded-lg" required><select class="w-full px-4 py-3 border-2 rounded-lg bg-white" name="gender1" required><option value="" disabled selected>性别</option><option>男</option><option>女</option></select></div></div><div><label class="font-semibold text-gray-700">队员二信息 (您的搭档)</label><div class="space-y-3 mt-2 p-4 border rounded-lg"><input type="text" placeholder="姓名" name="name2" class="w-full px-4 py-3 border-2 rounded-lg" required><input type="number" placeholder="电话" name="phone2" class="w-full px-4 py-3 border-2 rounded-lg" required><select class="w-full px-4 py-3 border-2 rounded-lg bg-white" name="gender2" required><option value="" disabled selected>性别</option><option>男</option><option>女</option></select></div></div><button type="submit" class="w-full mt-4 lilly-button font-bold py-3 rounded-lg hover:opacity-90" style="background-color: #a855f7;">确认报名</button></form></div><div class="sticky bottom-0 bg-white pt-2 pb-4 -mx-6 px-6 border-t"><button data-action="showPage" data-page="badmintonIntroPage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">返回大赛介绍</button></div></div>
+    <div id="badmintonRegisterPage_mens" class="page p-6 badminton-reg-page">
+        <div class="page-content">
+            <h2 class="text-3xl font-bold mb-6 font-ringside" style="color: var(--lilly-red);">男子单打报名</h2>
+            <form class="space-y-4" data-type="mens">
+                <p class="text-sm text-gray-600">请填写您的参赛信息。</p>
+                <input type="text" placeholder="姓名" name="name1" class="w-full px-4 py-3 border-2 rounded-lg" required>
+                <input type="number" placeholder="电话" name="phone1" class="w-full px-4 py-3 border-2 rounded-lg" required>
+                <button type="submit" class="w-full mt-4 lilly-button font-bold py-3 rounded-lg hover:opacity-90">确认报名</button>
+            </form>
+        </div>
+        <div class="sticky-footer">
+            <button data-action="showPage" data-page="badmintonIntroPage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">返回大赛介绍</button>
+        </div>
+    </div>
+    <div id="badmintonRegisterPage_womens" class="page p-6 badminton-reg-page">
+        <div class="page-content">
+            <h2 class="text-3xl font-bold mb-6 font-ringside" style="color: var(--lilly-red);">女子单打报名</h2>
+            <form class="space-y-4" data-type="womens">
+                <p class="text-sm text-gray-600">请填写您的参赛信息。</p>
+                <input type="text" placeholder="姓名" name="name1" class="w-full px-4 py-3 border-2 rounded-lg" required>
+                <input type="number" placeholder="电话" name="phone1" class="w-full px-4 py-3 border-2 rounded-lg" required>
+                <button type="submit" class="w-full mt-4 lilly-button font-bold py-3 rounded-lg hover:opacity-90" style="background-color: #ec4899;">确认报名</button>
+            </form>
+        </div>
+        <div class="sticky-footer">
+            <button data-action="showPage" data-page="badmintonIntroPage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">返回大赛介绍</button>
+        </div>
+    </div>
+    <div id="badmintonRegisterPage_mixed" class="page p-6 badminton-reg-page">
+        <div class="page-content">
+            <h2 class="text-3xl font-bold mb-6 font-ringside" style="color: var(--lilly-red);">混合双打报名</h2>
+            <form class="space-y-6" data-type="mixed">
+                <div>
+                    <label class="font-semibold text-gray-700">队员一信息</label>
+                    <div class="space-y-3 mt-2 p-4 border rounded-lg">
+                        <input type="text" placeholder="姓名" name="name1" class="w-full px-4 py-3 border-2 rounded-lg" required>
+                        <input type="number" placeholder="电话" name="phone1" class="w-full px-4 py-3 border-2 rounded-lg" required>
+                        <select class="w-full px-4 py-3 border-2 rounded-lg bg-white" name="gender1" required><option value="" disabled selected>性别</option><option>男</option><option>女</option></select>
+                    </div>
+                </div>
+                <div>
+                    <label class="font-semibold text-gray-700">队员二信息 (您的搭档)</label>
+                    <div class="space-y-3 mt-2 p-4 border rounded-lg">
+                        <input type="text" placeholder="姓名" name="name2" class="w-full px-4 py-3 border-2 rounded-lg" required>
+                        <input type="number" placeholder="电话" name="phone2" class="w-full px-4 py-3 border-2 rounded-lg" required>
+                        <select class="w-full px-4 py-3 border-2 rounded-lg bg-white" name="gender2" required><option value="" disabled selected>性别</option><option>男</option><option>女</option></select>
+                    </div>
+                </div>
+                <button type="submit" class="w-full mt-4 lilly-button font-bold py-3 rounded-lg hover:opacity-90" style="background-color: #a855f7;">确认报名</button>
+            </form>
+        </div>
+        <div class="sticky-footer">
+            <button data-action="showPage" data-page="badmintonIntroPage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">返回大赛介绍</button>
+        </div>
+    </div>
     
     <!-- 活动日程页面 -->
     <div id="schedulePage" class="page">
@@ -400,7 +449,7 @@
             <h2 class="text-3xl font-bold mb-6 font-ringside" style="color: var(--lilly-red);">活动日程</h2>
             <img src="https://placehold.co/345x450/14B8A6/FFFFFF?text=Event+Schedule" alt="活动日程图" class="w-full rounded-lg">
         </div>
-        <div class="sticky bottom-0 bg-white pt-2 pb-4 -mx-6 px-6 border-t">
+        <div class="sticky-footer">
             <button data-action="showPage" data-page="homePage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">
                 返回首页
             </button>
@@ -417,7 +466,7 @@
                 <div class="p-4 bg-purple-100 rounded-lg">混合双打: 已报名 <span data-id="mixed_count_table">0</span>，剩余 <span data-id="mixed_remain_table">16</span></div>
             </div>
         </div>
-        <div class="sticky bottom-0 bg-white pt-2 pb-4 -mx-6 px-6 border-t">
+        <div class="sticky-footer">
             <button data-action="showPage" data-page="badmintonIntroPage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">返回大赛介绍</button>
         </div>
     </div>
@@ -474,9 +523,8 @@ const ACTIVITY_DATA = {
 class H5App {
     constructor(rootId) {
         this.root = document.getElementById(rootId);
-        this.screen = this.root.querySelector('.phone-screen');
         this.appTemplate = document.getElementById('app-template');
-        this.screen.innerHTML = this.appTemplate.innerHTML;
+        this.root.innerHTML = this.appTemplate.innerHTML;
         this.storageKey = 'lillyFamilyDayAppState';
 
         this.state = this.loadState(); // Load state from localStorage first
@@ -519,11 +567,11 @@ class H5App {
 
     // --- Element Getters ---
     getEl(dataId) {
-        return this.screen.querySelector(`[data-id="${dataId}"]`);
+        return this.root.querySelector(`[data-id="${dataId}"]`);
     }
     
     getAllEl(selector) {
-        return this.screen.querySelectorAll(selector);
+        return this.root.querySelectorAll(selector);
     }
 
     // --- App Initialization ---
@@ -531,13 +579,12 @@ class H5App {
         this.generateActivityPages();
         this.attachEventListeners();
         
-        // Determine starting page based on saved state
         const startingPage = this.state.currentUser ? 'homePage' : 'splashPage';
         this.showPage(startingPage);
     }
 
     attachEventListeners() {
-        this.screen.addEventListener('click', (e) => {
+        this.root.addEventListener('click', (e) => {
             const target = e.target.closest('[data-action]');
             if (!target) return;
 
@@ -563,14 +610,13 @@ class H5App {
         this.saveState();
 
         this.getAllEl('.page').forEach(p => p.style.display = 'none');
-        const targetPage = this.screen.querySelector(`#${pageId}`);
+        const targetPage = this.root.querySelector(`#${pageId}`);
         
         if (targetPage) {
             targetPage.style.display = 'flex';
         }
-        this.screen.scrollTo(0, 0);
+        this.root.scrollTo(0, 0);
         
-        // Page specific updates
         this.onPageShow(pageId);
     }
 
@@ -615,7 +661,7 @@ class H5App {
     }
 
     updateTransportInfo() {
-        const transportChoice = this.screen.querySelector('input[name="transport"]:checked')?.value;
+        const transportChoice = this.root.querySelector('input[name="transport"]:checked')?.value;
         const detailsContainer = this.getEl('transportDetails');
         if (transportChoice === '自行前往') {
             detailsContainer.innerHTML = `<div class="p-4 bg-indigo-50 rounded-lg border border-indigo-200"><p class="font-semibold text-indigo-800">活动地址:</p><p class="text-sm text-indigo-700">上海市闵行区XXXXXX农庄</p><a href="#" data-action="showMap" class="mt-2 inline-block bg-indigo-500 text-white text-sm font-bold py-2 px-4 rounded-lg hover:bg-indigo-600">点击导航</a></div>`;
@@ -629,8 +675,8 @@ class H5App {
     submitRegistration() {
         const familyForms = this.getAllEl('[data-id="familyFormsContainer"] > div');
         this.state.registration = {
-            dining: this.screen.querySelector('input[name="dining"]:checked').value,
-            transport: this.screen.querySelector('input[name="transport"]:checked').value,
+            dining: this.root.querySelector('input[name="dining"]:checked').value,
+            transport: this.root.querySelector('input[name="transport"]:checked').value,
             familyCount: familyForms.length,
         };
         this.saveState();
@@ -669,7 +715,6 @@ class H5App {
         this.getEl('regEmployeeId').textContent = id;
         this.getEl('regEmployeeName').textContent = name;
         this.getEl('regEmployeePhone').textContent = phone;
-        // Logic to pre-fill form if registration data exists can be added here
         this.updateTransportInfo();
     }
     
@@ -731,10 +776,10 @@ class H5App {
                 ${rulesHtml}
                 <div class="space-y-4">${itemsHtml}</div>
             </div>
-            <div class="sticky bottom-0 bg-white pt-2 pb-4 -mx-6 px-6 border-t">
+            <div class="sticky-footer">
                 <button data-action="showPage" data-page="${backPage}" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">返回活动亮点</button>
             </div>`;
-        this.screen.querySelector(`#${pageId}`).innerHTML = pageHtml;
+        this.root.querySelector(`#${pageId}`).innerHTML = pageHtml;
     }
 
     showItemDetail(target) {
@@ -762,7 +807,6 @@ class H5App {
         this.getEl('womens_remain').textContent = max - counts.womens;
         this.getEl('mixed_remain').textContent = max - Math.ceil(counts.mixed / 2);
 
-        // Update table page as well
         this.getEl('mens_count_table').textContent = counts.mens;
         this.getEl('womens_count_table').textContent = counts.womens;
         this.getEl('mixed_count_table').textContent = Math.ceil(counts.mixed / 2);
@@ -822,14 +866,14 @@ class H5App {
         this.getEl('modalText').textContent = text;
         this.getEl('customModal').classList.add('visible');
         
-        this.modalCloseCallback = onclose; // Store callback
+        this.modalCloseCallback = onclose; 
     }
     
     closeModal() {
         this.getEl('customModal').classList.remove('visible');
         if (typeof this.modalCloseCallback === 'function') {
             this.modalCloseCallback();
-            this.modalCloseCallback = null; // Clear callback
+            this.modalCloseCallback = null; 
         }
     }
 
@@ -839,7 +883,7 @@ class H5App {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new H5App('iphone-app');
+    new H5App('app-container');
 });
 </script>
 </body>
