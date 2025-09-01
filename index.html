@@ -16,20 +16,16 @@
             --lilly-green-light: #e0f2f1;
             --lilly-green-dark: #00796b;
         }
-
-        /* Ensure the app takes up the full screen height */
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Prevent body scroll */
+            overflow: hidden;
         }
-
         body {
             font-family: 'Inter', 'Helvetica Neue', 'Helvetica', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
-            background-color: #f3f4f6; /* A light gray background */
+            background-color: #f3f4f6;
         }
-
         #app-container {
             width: 100%;
             height: 100%;
@@ -37,16 +33,13 @@
             -webkit-overflow-scrolling: touch;
             position: relative; 
         }
-        
         #app-container::-webkit-scrollbar {
             display: none;  
         }
-
         .font-ringside {
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
         }
-
         .page {
             display: none;
             animation: fadeIn 0.5s;
@@ -56,25 +49,20 @@
             box-sizing: border-box;
             background-color: white;
         }
-
-        /* Special style for pages that need full height layout */
         .page.full-height {
              height: 100%;
         }
-
         .page-content {
             flex-grow: 1;
-            padding: 1.5rem; /* 24px */
+            padding: 1.5rem;
         }
-
         .sticky-footer {
             position: sticky;
             bottom: 0;
             background-color: white;
-            padding: 0.75rem 1.5rem 1.5rem 1.5rem; /* pb-6 for safe area */
+            padding: 0.75rem 1.5rem 1.5rem 1.5rem;
             border-top: 1px solid #e5e7eb;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -86,7 +74,6 @@
         .animate-pulse-slow {
             animation: pulse 2.5s infinite;
         }
-        
         .lilly-button {
             background-color: var(--lilly-red);
             color: white;
@@ -106,8 +93,6 @@
         .animate-blink {
             animation: blink 1.5s infinite ease-in-out;
         }
-
-        /* Custom Modal Styles */
         .custom-modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -149,15 +134,12 @@
             font-size: 0.9rem;
             margin-bottom: 1.5rem;
         }
-
     </style>
 </head>
 <body>
     <div id="app-container">
-        <!-- App content will be injected here by script -->
     </div>
     
-    <!-- Modal Template -->
     <div id="customModal" class="custom-modal-overlay">
         <div class="custom-modal-content">
             <h3 data-id="modalTitle" class="custom-modal-title">提示</h3>
@@ -167,7 +149,6 @@
     </div>
 
 <template id="app-template">
-    <!-- 开屏首页 -->
     <div id="splashPage" class="page flex flex-col justify-end items-center text-center p-8 bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/gaoshijun1983-collab/Lilly-H5/main/1.1%20%E5%BC%80%E5%B1%8F%E9%A1%B5%E4%B8%BB%E8%A7%86%E8%A7%89%EF%BC%881179%C3%972556%EF%BC%89.png'); height: 100%;">
         <div class="mb-12 w-full max-w-xs text-white" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
              <h1 class="text-4xl font-bold font-ringside">趣赢!当燃卡路‘礼’</h1>
@@ -178,7 +159,6 @@
         </button>
     </div>
 
-    <!-- 模块一：首次访问与验证 -->
     <div id="verificationPage" class="page flex items-center justify-center p-6 bg-gray-50">
         <div class="bg-white rounded-2xl p-8 shadow-xl text-center w-full max-w-sm">
             <h2 class="text-3xl font-bold text-gray-800 mb-4 font-ringside" style="color: var(--lilly-red);">员工身份验证</h2>
@@ -195,9 +175,7 @@
         </div>
     </div>
 
-    <!-- 模块二：H5 首页 -->
-    <div id="homePage" class="page full-height"> <!-- Use full-height class -->
-      <!-- 1. Header: Fixed height -->
+    <div id="homePage" class="page full-height">
       <header class="text-center relative h-1/4 flex-shrink-0">
         <img src="https://images.unsplash.com/photo-1593341641692-aa7a8a7f711b?q=80&w=2574&auto=format&fit=crop" alt="礼来家庭日活动主视觉" class="w-full h-full object-cover">
          <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
@@ -205,7 +183,6 @@
         </div>
       </header>
     
-      <!-- 2. Main Content: Grow to fill space, using flex and gap for tighter layout -->
       <main class="page-content flex-grow flex flex-col justify-start gap-5 pt-8">
           <button data-id="registerBtn" data-action="showPage" data-page="registrationPage" class="w-full text-left p-4 bg-blue-500 text-white rounded-xl shadow-lg flex justify-between items-center hover:bg-blue-600 transition disabled:bg-gray-400 disabled:cursor-not-allowed">
             <div><h2 class="text-lg font-bold font-ringside">立即报名</h2><p class="text-sm opacity-80">填写信息，锁定席位</p></div><span class="text-2xl">&rarr;</span>
@@ -233,7 +210,6 @@
           </div>
       </main>
     
-      <!-- 3. Footer: Sticky at the bottom -->
        <div class="sticky-footer flex-shrink-0">
         <button data-action="showMyBookings" class="w-full p-4 lilly-button-green rounded-xl text-center hover:opacity-90 transition font-semibold shadow-lg">
           我的报名 (查看凭证)
@@ -241,7 +217,6 @@
       </div>
     </div>
     
-    <!-- 模块三：报名登记流程 -->
     <div id="registrationPage" class="page">
         <div class="page-content">
             <h2 class="text-3xl font-bold mb-6 font-ringside" style="color: var(--lilly-red);">活动报名</h2>
@@ -306,7 +281,6 @@
         </div>
     </div>
     
-    <!-- 报名成功页面 -->
     <div id="successPage" class="page">
         <div class="page-content flex flex-col items-center justify-center text-center">
             <div class="w-24 h-24 rounded-full flex items-center justify-center mb-6 mx-auto" style="background-color: var(--lilly-green-light);">
@@ -320,7 +294,6 @@
                  <p class="text-sm text-gray-500" data-id="successId"></p>
             </div>
             <div data-id="allMyBookings" class="mt-6 text-left w-full max-w-xs bg-gray-50 p-4 rounded-lg">
-                <!-- Booking details will be inserted here -->
             </div>
         </div>
          <div class="sticky-footer">
@@ -330,7 +303,6 @@
         </div>
     </div>
 
-    <!-- 活动亮点主页 -->
     <div id="highlightsPage" class="page">
         <div class="page-content">
             <div class="relative w-full h-40 rounded-lg overflow-hidden mb-4 shadow-lg">
@@ -372,13 +344,11 @@
         </div>
     </div>
 
-    <!-- 项目列表页 (模板) -->
     <div id="activityListPage" class="page">
         <div class="page-content">
              <h2 data-id="activityListTitle" class="text-3xl font-bold mb-6 font-ringside"></h2>
              <p data-id="activityListDesc" class="text-gray-600 mb-4"></p>
              <div data-id="activityListContainer" class="space-y-4">
-                <!-- Activity items will be injected here -->
              </div>
         </div>
         <div class="sticky-footer">
@@ -386,7 +356,6 @@
         </div>
     </div>
     
-    <!-- 项目详情页模板 -->
     <div id="itemDetailPage" class="page">
         <div class="page-content">
             <img data-id="itemDetailImage" src="" class="w-full h-48 object-cover rounded-lg mb-4 shadow-md">
@@ -402,7 +371,6 @@
         </div>
     </div>
     
-    <!-- 羽毛球大赛介绍页 -->
     <div id="badmintonIntroPage" class="page">
         <div class="page-content">
             <img src="https://images.unsplash.com/photo-1620246233762-2f618f2191b4?q=80&w=2564&auto=format&fit=crop" alt="羽毛球大赛主图" class="w-full h-40 object-cover rounded-lg mb-4 shadow-md">
@@ -434,7 +402,6 @@
         </div>
     </div>
 
-    <!-- 羽毛球大赛报名表单页 -->
     <div id="badmintonRegisterPage_mens" class="page badminton-reg-page">
         <div class="page-content"><h2 class="text-3xl font-bold mb-6 font-ringside" style="color: var(--lilly-red);">男子单打报名</h2><form class="space-y-4" data-type="mens"><p class="text-sm text-gray-600">请填写您的参赛信息。</p><input type="text" placeholder="姓名" name="name1" class="w-full px-4 py-3 border-2 rounded-lg" required><input type="tel" placeholder="电话" name="phone1" class="w-full px-4 py-3 border-2 rounded-lg" required><button type="submit" class="w-full mt-4 lilly-button font-bold py-3 rounded-lg hover:opacity-90">确认报名</button></form></div>
         <div class="sticky-footer"><button data-action="showPage" data-page="badmintonIntroPage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">返回大赛介绍</button></div>
@@ -448,7 +415,6 @@
         <div class="sticky-footer"><button data-action="showPage" data-page="badmintonIntroPage" class="w-full p-4 bg-gray-200 text-gray-700 rounded-xl text-center hover:bg-gray-300 transition font-semibold">返回大赛介绍</button></div>
     </div>
     
-    <!-- 羽毛球报名成功页 -->
     <div id="badmintonSuccessPage" class="page">
         <div class="page-content text-center flex flex-col items-center justify-center">
              <div class="w-24 h-24 rounded-full flex items-center justify-center mb-6 mx-auto" style="background-color: var(--lilly-green-light);"><svg class="w-16 h-16 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
@@ -462,14 +428,11 @@
         </div>
     </div>
 
-    <!-- 活动日程页面 -->
     <div id="schedulePage" class="page">
         <div class="page-content">
             <h2 class="text-3xl font-bold mb-6 font-ringside" style="color: var(--lilly-red);">活动日程</h2>
             
-            <!-- Timeline -->
             <div class="relative border-l-2 border-red-200 ml-4">
-                <!-- Timeline Item 1 -->
                 <div class="mb-8 ml-8">
                     <span class="absolute flex items-center justify-center w-8 h-8 bg-red-200 rounded-full -left-4 ring-4 ring-white">
                         <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zM5 10a1 1 0 011-1h2V7a1 1 0 012 0v2h2a1 1 0 110 2h-2v2a1 1 0 11-2 0v-2H6a1 1 0 01-1-1z"></path></svg>
@@ -478,7 +441,6 @@
                     <time class="block mb-2 text-sm font-normal leading-none text-gray-500">13:00 - 14:30</time>
                     <p class="text-base font-normal text-gray-600">集合签到, 领取家庭礼包、餐券、抽奖券，开启阳光普照奖兑换！</p>
                 </div>
-                <!-- Timeline Item 2 -->
                 <div class="mb-8 ml-8">
                     <span class="absolute flex items-center justify-center w-8 h-8 bg-red-200 rounded-full -left-4 ring-4 ring-white">
                          <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.414-1.414L11 10.586V6z"></path></svg>
@@ -487,7 +449,6 @@
                     <time class="block mb-2 text-sm font-normal leading-none text-gray-500">14:00 - 14:30</time>
                     <p class="text-base font-normal text-gray-600">热力健身操开场，随后领导致辞，全员大合影，定格精彩瞬间。</p>
                 </div>
-                 <!-- Timeline Item 3 -->
                 <div class="mb-8 ml-8">
                     <span class="absolute flex items-center justify-center w-8 h-8 bg-red-200 rounded-full -left-4 ring-4 ring-white">
                          <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"></path></svg>
@@ -496,7 +457,6 @@
                     <time class="block mb-2 text-sm font-normal leading-none text-gray-500">14:30 - 15:20</time>
                     <p class="text-base font-normal text-gray-600">大型团队游戏 “暴打尖叫鸡”，点燃全场热情！</p>
                 </div>
-                 <!-- Timeline Item 4 -->
                  <div class="mb-8 ml-8">
                     <span class="absolute flex items-center justify-center w-8 h-8 bg-red-200 rounded-full -left-4 ring-4 ring-white">
                          <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path d="M14.5 12a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM3.5 12a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM10 5.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM10 14.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM14.5 5.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path></svg>
@@ -505,7 +465,6 @@
                     <time class="block mb-2 text-sm font-normal leading-none text-gray-500">15:20 - 18:00</time>
                     <p class="text-base font-normal text-gray-600">尽情体验中小型游戏、DIY手作和桌游，收集“能量贴纸”，品尝美味小吃。</p>
                 </div>
-                 <!-- Timeline Item 5 -->
                  <div class="mb-8 ml-8">
                     <span class="absolute flex items-center justify-center w-8 h-8 bg-red-200 rounded-full -left-4 ring-4 ring-white">
                          <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.518.759a1.156 1.156 0 00-.43 1.639l4.748 4.748a1.156 1.156 0 001.639-.43l.758-1.518a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
@@ -514,7 +473,6 @@
                     <time class="block mb-2 text-sm font-normal leading-none text-gray-500">18:00 - 19:00</time>
                     <p class="text-base font-normal text-gray-600">凭餐券分时段享用美味自助餐，品尝烧烤、地锅鸡和农家菜。</p>
                 </div>
-                 <!-- Timeline Item 6 -->
                  <div class="mb-8 ml-8">
                     <span class="absolute flex items-center justify-center w-8 h-8 bg-red-200 rounded-full -left-4 ring-4 ring-white">
                          <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v1H5V4zM5 7h10v9a2 2 0 01-2 2H7a2 2 0 01-2-2V7zm3 3a1 1 0 00-1 1v2a1 1 0 102 0v-2a1 1 0 00-1-1z"></path></svg>
@@ -523,7 +481,6 @@
                     <time class="block mb-2 text-sm font-normal leading-none text-gray-500">19:00 - 19:45</time>
                     <p class="text-base font-normal text-gray-600">草坪音乐会、篝火派对、舞龙表演、烟花大秀、夜游小火车，将快乐推向高潮！</p>
                 </div>
-                 <!-- Timeline Item 7 -->
                  <div class="ml-8">
                     <span class="absolute flex items-center justify-center w-8 h-8 bg-red-200 rounded-full -left-4 ring-4 ring-white">
                          <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path d="M5 2a1 1 0 011 1v1h8V3a1 1 0 112 0v1h1a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1V3a1 1 0 011-1zm1 10a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2z"></path></svg>
@@ -555,15 +512,14 @@
                 currentUser: null,
                 currentPage: 'splashPage',
                 familyMemberCounter: 0,
-                registrationData: null, // Holds family day registration
-                tournamentRegistrationData: null, // Holds badminton registration
+                registrationData: null,
+                tournamentRegistrationData: null,
             };
 
             this.init();
         }
 
         getEl(dataId) {
-            // Search within the root container first, then the modal
             return this.root.querySelector(`[data-id="${dataId}"]`) || this.modal.querySelector(`[data-id="${dataId}"]`);
         }
         
@@ -572,10 +528,9 @@
         }
 
         init() {
-            this.loadState(); // Load state from localStorage
+            this.loadState();
             this.attachEventListeners();
             
-            // Determine initial page
             if (this.state.currentUser) {
                 this.showPage('homePage');
             } else {
@@ -615,7 +570,6 @@
             }
             this.root.parentElement.scrollTo(0, 0);
 
-            // Page-specific updates
             if (pageId === 'homePage') this.updateHomePageState();
             if (pageId === 'badmintonIntroPage') this.updateBadmintonCounts();
             if (pageId === 'registrationPage' && this.state.currentUser) {
@@ -623,7 +577,6 @@
             }
         }
         
-        // --- Data Persistence ---
         saveState() {
             localStorage.setItem('lillyFamilyDayState', JSON.stringify(this.state));
         }
@@ -635,7 +588,6 @@
             }
         }
 
-        // --- User Flow & Registration ---
         verifyEmployee() {
             const id = this.getEl('employeeIdInput').value.trim();
             const name = this.getEl('employeeNameInput').value.trim();
@@ -652,27 +604,21 @@
         }
         
         populateRegistrationForm() {
-            // Populate employee info
             this.getEl('regEmployeeId').textContent = this.state.currentUser.id;
             this.getEl('regEmployeeName').textContent = this.state.currentUser.name;
             this.getEl('regEmployeePhone').textContent = this.state.currentUser.phone;
 
-            // Clear previous family forms
             this.getEl('familyFormsContainer').innerHTML = '';
             this.state.familyMemberCounter = 0;
 
-            // If modifying, repopulate previous data
             if (this.state.registrationData) {
-                // Repopulate family members
                 this.state.registrationData.familyMembers.forEach(member => {
                     this.addFamilyMemberForm(member);
                 });
-                // Repopulate dining and transport
                 this.root.querySelector(`input[name="dining"][value="${this.state.registrationData.dining}"]`).checked = true;
                 this.root.querySelector(`input[name="transport"][value="${this.state.registrationData.transport}"]`).checked = true;
                 this.updateTransportInfo(this.state.registrationData.transportDetails);
             } else {
-                // Set defaults for a new registration
                 this.root.querySelector('input[name="dining"][value="17:40 - 18:20 (蓝票)"]').checked = true;
                 this.root.querySelector('input[name="transport"][value="自行前往"]').checked = true;
                 this.updateTransportInfo();
@@ -772,7 +718,6 @@
             container.innerHTML = html;
         }
 
-        // --- UI Components & Updates ---
         addFamilyMemberForm(memberData = null) {
             this.state.familyMemberCounter++;
             const container = this.getEl('familyFormsContainer');
@@ -808,7 +753,7 @@
                     </div>
                 </div>`;
             container.insertAdjacentHTML('beforeend', formHtml);
-            if (!memberData) { // only for new forms
+            if (!memberData) {
                 container.lastElementChild.querySelector('select[name="relation"]').selectedIndex = 0;
                 container.lastElementChild.querySelector('select[name="ageGroup"]').selectedIndex = 0;
                 container.lastElementChild.querySelector('select[name="gender"]').selectedIndex = 0;
@@ -843,7 +788,6 @@
             this.modal.classList.remove('visible');
         }
 
-        // --- Activity Highlights ---
         showListPage(target) {
             const pageType = target.dataset.page;
             const data = ACTIVITY_DATA[pageType];
@@ -869,7 +813,6 @@
         showItemDetail(target) {
             const itemId = target.dataset.itemId;
             let item, backPageId;
-            // Find the item and its category
             for (const key in ACTIVITY_DATA) {
                 const foundItem = ACTIVITY_DATA[key].items.find(i => i.id === itemId);
                 if (foundItem) {
@@ -886,13 +829,12 @@
                 this.getEl('itemDetailRules').textContent = item.rules;
                 
                 const backButton = this.getEl('itemDetailBackButton');
-                backButton.dataset.page = backPageId; // Set the correct back page
+                backButton.dataset.page = backPageId;
                 
                 this.showPage('itemDetailPage');
             }
         }
 
-        // --- Badminton Tournament ---
         showBadmintonRegPage(target) {
             if (!this.state.registrationData) {
                 this.showModal('报名限制', '请您先完成家庭日活动报名，才能报名羽毛球大赛哦！');
@@ -941,9 +883,8 @@
                 case 'mixed': typeDisplay = '混合双打'; infoHtml = `<p><strong>项目:</strong> ${typeDisplay}</p><div class="mt-2 pt-2 border-t"><p><strong>队员1:</strong> ${name1} (${phone1})</p></div><div class="mt-1"><p><strong>队员2:</strong> ${name2} (${phone2})</p></div>`; break;
             }
             
-            // Store the specific signup details under a 'signup' key to avoid conflicts
             this.state.tournamentRegistrationData.signup = { type, typeDisplay, name1, phone1, name2, phone2 }; 
-            this.state.tournamentRegistrationData.counts[type]++; // Increment count
+            this.state.tournamentRegistrationData.counts[type]++;
             
             this.getEl('b-success-info').innerHTML = infoHtml;
             
@@ -957,37 +898,37 @@
     const ACTIVITY_DATA = {
         funListPage: {
             title: "「趣」· 奇想世界",
-            color: "#ca8a04", // amber-600
+            color: "#ca8a04",
             description: "亲近自然，放飞童心！这里是全家人的游乐场，从田园小火车到巨型麻将，每一种快乐都无需思考，只需尽情投入。",
             items: [
-                { id: 'fun-1', title: '雀神争霸赛', subtitle: '巨型麻将，全家开杠', desc: '不止是手气，更是霸气！在放大的世界里，运筹帷幄，体验巨型麻将和上海敲麻的乐趣，看谁才是真正的麻坛霸主！', img: 'https://placehold.co/800x445/facc15/333', thumb: 'https://placehold.co/128x128/facc15/333', rules: '像麻坛高手一样对决！规则：4人一桌，巨型麻将牌，胡牌得分。别碰倒牌堆哦，不然全家笑翻天！限时20min，先胡者胜。' },
-                { id: 'fun-2', title: '疯狂卡丁车', subtitle: '体验速度的快感', desc: '油门踩到底，烦恼全甩掉！来一场全家人的速度与激情，安全赛道，无限尖叫！', img: 'https://placehold.co/800x445/f97316/333', thumb: 'https://placehold.co/128x128/f97316/333', rules: '油门轰鸣，弯道超车！规则：安全头盔上阵，赛道限速，撞墙扣分。全家组队，第一个冲线拿大奖！别忘刹车哦~' },
-                { id: 'fun-3', title: '田园小火车', subtitle: '悠闲观光之旅', desc: '呜呜~开往春天的列车发车啦！载上家人，环游童话般的农庄，每一帧都是风景。', img: 'https://placehold.co/800x445/84cc16/333', thumb: 'https://placehold.co/128x128/84cc16/333', rules: '慢悠悠，看风景！规则：排队上车，坐稳扶好。小火车环游一周，记得跟路边的稻草人打招呼呀！' },
-                { id: 'fun-4', title: '水上碰碰船', subtitle: '夏日清凉大作战', desc: '夏日炎炎，水上开战！驾驶你的小船，撞走所有不开心，清凉一夏！', img: 'https://placehold.co/800x445/38bdf8/333', thumb: 'https://placehold.co/128x128/38bdf8/333', rules: '水上大战三百回合！规则：穿好救生衣，不许站立。目标是撞击对方船只的充气部分，别撞自己人哦！' },
+                { id: 'fun-1', title: '雀神争霸赛', subtitle: '巨型麻将，全家开杠', desc: '不止是手气，更是霸气！在放大的世界里，运筹帷幄，体验巨型麻将和上海敲麻的乐趣，看谁才是真正的麻坛霸主！', img: 'https://placehold.co/786x384/facc15/333?text=头图-6.5.1', thumb: 'https://placehold.co/128x128/facc15/333?text=缩略图-6.5.1', rules: '像麻坛高手一样对决！规则：4人一桌，巨型麻将牌，胡牌得分。别碰倒牌堆哦，不然全家笑翻天！限时20min，先胡者胜。' },
+                { id: 'fun-2', title: '疯狂卡丁车', subtitle: '体验速度的快感', desc: '油门踩到底，烦恼全甩掉！来一场全家人的速度与激情，安全赛道，无限尖叫！', img: 'https://placehold.co/786x384/f97316/333?text=头图-6.5.2', thumb: 'https://placehold.co/128x128/f97316/333?text=缩略图-6.5.2', rules: '油门轰鸣，弯道超车！规则：安全头盔上阵，赛道限速，撞墙扣分。全家组队，第一个冲线拿大奖！别忘刹车哦~' },
+                { id: 'fun-3', title: '田园小火车', subtitle: '悠闲观光之旅', desc: '呜呜~开往春天的列车发车啦！载上家人，环游童话般的农庄，每一帧都是风景。', img: 'https://placehold.co/786x384/84cc16/333?text=头图-6.5.3', thumb: 'https://placehold.co/128x128/84cc16/333?text=缩略图-6.5.3', rules: '慢悠悠，看风景！规则：排队上车，坐稳扶好。小火车环游一周，记得跟路边的稻草人打招呼呀！' },
+                { id: 'fun-4', title: '水上碰碰船', subtitle: '夏日清凉大作战', desc: '夏日炎炎，水上开战！驾驶你的小船，撞走所有不开心，清凉一夏！', img: 'https://placehold.co/786x384/38bdf8/333?text=头图-6.5.4', thumb: 'https://placehold.co/128x128/38bdf8/333?text=缩略图-6.5.4', rules: '水上大战三百回合！规则：穿好救生衣，不许站立。目标是撞击对方船只的充气部分，别撞自己人哦！' },
             ]
         },
         winListPage: {
             title: "「赢」· 卡路里战场",
-            color: "#dc2626", // red-600
+            color: "#dc2626",
             description: "团队集结，为荣誉而战！这里是挥洒汗水、燃烧卡路里的竞技场。每一次协作，每一次冲刺，都是团队精神最燃的证明！",
             items: [
-                { id: 'win-1', title: '进击的跳远', subtitle: '运气与勇气的对决', desc: '狭路相逢勇者胜！一步一跳，一猜一决，通往胜利的路上，不止需要大长腿，更需要好运气！', img: 'https://placehold.co/800x445/ef4444/333', thumb: 'https://placehold.co/128x128/ef4444/333', rules: '跳到“对手”面前，石头剪刀布！规则：输了就换队友从起点重来，赢了继续跳。谁先占领对方起点区谁就赢！' },
-                { id: 'win-2', title: '巨型排球对抗赛', subtitle: '超乎想象的团队乐趣', desc: '团结就是力量！面对这个庞然大物，每一次托举都凝聚着团队的心跳。得分的瞬间，燃爆全场！', img: 'https://placehold.co/800x445/f97316/333', thumb: 'https://placehold.co/128x128/f97316/333', rules: '这个排球有点大！规则：团队协作，把球拍过网，落地得分。小心，别被球砸到，它真的很大！' },
-                { id: 'win-3', title: '木头人匹克球', subtitle: '从解救队友开始', desc: '从“被封印”到“绝地反击”！蹲下是积蓄力量，起身是扭转乾坤。来吧，解锁你的自由，赢下这场翻身仗！', img: 'https://placehold.co/800x445/f59e0b/333', thumb: 'https://placehold.co/128x128/f59e0b/333', rules: '解救你的“木头人”队友！规则：发球方需要先让蹲着的队友接到球才能解锁。全员解锁后，进入正常得分模式。' },
-                { id: 'win-4', title: '足球斯诺克', subtitle: '大力出奇迹', desc: '当绿茵场遇上台球桌，用脚法代替巧劲！精准推杆，大力抽射，你就是下一个“黄金右脚”斯诺克大师！', img: 'https://placehold.co/800x445/10b981/333', thumb: 'https://placehold.co/128x128/10b981/333', rules: '用脚踢的斯诺克！规则：选择纯色或花色球，用白色主球把你的所有球踢进洞，最后踢黑八。小心别犯规哦！' },
-                { id: 'win-5', title: '动物赛跑', subtitle: '萌宠总动员', desc: '超级萌宠大暴走！拿起你的芭蕉扇，看看谁才是真正的“赶G人”。这不仅是速度赛，更是策略与耐心的考验！', img: 'https://placehold.co/800x445/6366f1/333', thumb: 'https://placehold.co/128x128/6366f1/333', rules: '快扇风，让你的小鸡快跑！规则：只能用扇子扇气球前进，手碰到就犯规啦。最先到达终点的队伍获胜！' },
-                { id: 'win-6', title: '投球挑战', subtitle: '一击即中赢大奖', desc: '屏息凝神，就现在！每一次抛物线都承载着赢得大奖的希望。三球定胜负，看看你能抱走几等奖？', img: 'https://placehold.co/800x445/8b5cf6/333', thumb: 'https://placehold.co/128x128/8b5cf6/333', rules: '夜市经典，实力挑战！规则：每人3个球，投进指定数量的桶里就能拿走对应的奖品。老板，拿那个最大的娃娃！' },
-                { id: 'win-7', title: '采摘接力赛', subtitle: '奔跑吧，都市农夫', desc: '都市农夫，集结！根据神秘任务卡，冲向田野，寻找最新鲜的战利品。速度最快的队伍，将赢得丰收的荣耀！', img: 'https://placehold.co/800x445/ec4899/333', thumb: 'https://placehold.co/128x128/ec4899/333', rules: '按图索骥，全速前进！规则：根据任务卡上的蔬菜图片，以最快速度采摘到指定种类和数量的蔬菜，交给队友，用时最短的队伍获胜。' },
+                { id: 'win-1', title: '进击的跳远', subtitle: '运气与勇气的对决', desc: '狭路相逢勇者胜！一步一跳，一猜一决，通往胜利的路上，不止需要大长腿，更需要好运气！', img: 'https://placehold.co/786x384/ef4444/333?text=头图-6.6.1', thumb: 'https://placehold.co/128x128/ef4444/333?text=缩略图-6.6.1', rules: '跳到“对手”面前，石头剪刀布！规则：输了就换队友从起点重来，赢了继续跳。谁先占领对方起点区谁就赢！' },
+                { id: 'win-2', title: '巨型排球对抗赛', subtitle: '超乎想象的团队乐趣', desc: '团结就是力量！面对这个庞然大物，每一次托举都凝聚着团队的心跳。得分的瞬间，燃爆全场！', img: 'https://placehold.co/786x384/f97316/333?text=头图-6.6.2', thumb: 'https://placehold.co/128x128/f97316/333?text=缩略图-6.6.2', rules: '这个排球有点大！规则：团队协作，把球拍过网，落地得分。小心，别被球砸到，它真的很大！' },
+                { id: 'win-3', title: '木头人匹克球', subtitle: '从解救队友开始', desc: '从“被封印”到“绝地反击”！蹲下是积蓄力量，起身是扭转乾坤。来吧，解锁你的自由，赢下这场翻身仗！', img: 'https://placehold.co/786x384/f59e0b/333?text=头图-6.6.3', thumb: 'https://placehold.co/128x128/f59e0b/333?text=缩略图-6.6.3', rules: '解救你的“木头人”队友！规则：发球方需要先让蹲着的队友接到球才能解锁。全员解锁后，进入正常得分模式。' },
+                { id: 'win-4', title: '足球斯诺克', subtitle: '大力出奇迹', desc: '当绿茵场遇上台球桌，用脚法代替巧劲！精准推杆，大力抽射，你就是下一个“黄金右脚”斯诺克大师！', img: 'https://placehold.co/786x384/10b981/333?text=头图-6.6.4', thumb: 'https://placehold.co/128x128/10b981/333?text=缩略图-6.6.4', rules: '用脚踢的斯诺克！规则：选择纯色或花色球，用白色主球把你的所有球踢进洞，最后踢黑八。小心别犯规哦！' },
+                { id: 'win-5', title: '动物赛跑', subtitle: '萌宠总动员', desc: '超级萌宠大暴走！拿起你的芭蕉扇，看看谁才是真正的“赶G人”。这不仅是速度赛，更是策略与耐心的考验！', img: 'https://placehold.co/786x384/6366f1/333?text=头图-6.6.5', thumb: 'https://placehold.co/128x128/6366f1/333?text=缩略图-6.6.5', rules: '快扇风，让你的小鸡快跑！规则：只能用扇子扇气球前进，手碰到就犯规啦。最先到达终点的队伍获胜！' },
+                { id: 'win-6', title: '投球挑战', subtitle: '一击即中赢大奖', desc: '屏息凝神，就现在！每一次抛物线都承载着赢得大奖的希望。三球定胜负，看看你能抱走几等奖？', img: 'https://placehold.co/786x384/8b5cf6/333?text=头图-6.6.6', thumb: 'https://placehold.co/128x128/8b5cf6/333?text=缩略图-6.6.6', rules: '夜市经典，实力挑战！规则：每人3个球，投进指定数量的桶里就能拿走对应的奖品。老板，拿那个最大的娃娃！' },
+                { id: 'win-7', title: '采摘接力赛', subtitle: '奔跑吧，都市农夫', desc: '都市农夫，集结！根据神秘任务卡，冲向田野，寻找最新鲜的战利品。速度最快的队伍，将赢得丰收的荣耀！', img: 'https://placehold.co/786x384/ec4899/333?text=头图-6.6.7', thumb: 'https://placehold.co/128x128/ec4899/333?text=缩略图-6.6.7', rules: '按图索骥，全速前进！规则：根据任务卡上的蔬菜图片，以最快速度采摘到指定种类和数量的蔬菜，交给队友，用时最短的队伍获胜。' },
             ]
         },
         diyListPage: {
             title: "「作」· 慢时光工坊",
-            color: "#8b5cf6", // violet-500
+            color: "#8b5cf6",
             description: "静下心，与家人共创温馨。这里是释放创意的艺术天地。亲手制作一件小物，把家庭日的专属回忆和温度一起带回家。",
             items: [
-                 { id: 'diy-1', title: '埃及马赛克灯', subtitle: '制作你的专属艺术品', desc: '亲手拼贴五彩斑斓的玻璃片，在光影交错中，打造一盏充满异域风情的土耳其马赛克灯。', img: 'https://placehold.co/800x445/c084fc/333', thumb: 'https://placehold.co/128x128/c084fc/333', rules: '体验土耳其的浪漫！规则：领取材料包，按照图纸或自由发挥，将彩色玻璃片粘贴在灯罩上，最后由工作人员帮你灌浆固定。' },
-                 { id: 'diy-2', title: '手绘风铃', subtitle: '描绘夏日的声音', desc: '用画笔在清脆的玻璃风铃上描绘心情，创作一个独一无二的夏日风铃，让清风带去你的祝福。', img: 'https://placehold.co/800x445/a78bfa/333', thumb: 'https://placehold.co/128x128/a78bfa/333', rules: '画出夏天的声音！规则：选择你喜欢的玻璃风铃，用特制颜料在上面作画。画完后自然风干，就可以带走这份独一无二的纪念品。' },
-                 { id: 'diy-3', title: '花草纸灯笼', subtitle: '点亮自然之美', desc: '将自然的花草融入传统纸张，亲手糊制一个散发着淡淡清香的灯笼，点亮温馨的夜晚。', img: 'https://placehold.co/800x445/7c3aed/333', thumb: 'https://placehold.co/128x128/7c3aed/333', rules: '把大自然包进灯里！规则：先用竹篾搭好灯笼骨架，再将带有美丽花草的纸张小心地糊在骨架上。一个古色古香的艺术品就诞生了。' },
+                 { id: 'diy-1', title: '埃及马赛克灯', subtitle: '制作你的专属艺术品', desc: '亲手拼贴五彩斑斓的玻璃片，在光影交错中，打造一盏充满异域风情的土耳其马赛克灯。', img: 'https://placehold.co/786x384/c084fc/333?text=头图-6.7.1', thumb: 'https://placehold.co/128x128/c084fc/333?text=缩略图-6.7.1', rules: '体验土耳其的浪漫！规则：领取材料包，按照图纸或自由发挥，将彩色玻璃片粘贴在灯罩上，最后由工作人员帮你灌浆固定。' },
+                 { id: 'diy-2', title: '手绘风铃', subtitle: '描绘夏日的声音', desc: '用画笔在清脆的玻璃风铃上描绘心情，创作一个独一无二的夏日风铃，让清风带去你的祝福。', img: 'https://placehold.co/786x384/a78bfa/333?text=头图-6.7.2', thumb: 'https://placehold.co/128x128/a78bfa/333?text=缩略图-6.7.2', rules: '画出夏天的声音！规则：选择你喜欢的玻璃风铃，用特制颜料在上面作画。画完后自然风干，就可以带走这份独一无二的纪念品。' },
+                 { id: 'diy-3', title: '花草纸灯笼', subtitle: '点亮自然之美', desc: '将自然的花草融入传统纸张，亲手糊制一个散发着淡淡清香的灯笼，点亮温馨的夜晚。', img: 'https://placehold.co/786x384/7c3aed/333?text=头图-6.7.3', thumb: 'https://placehold.co/128x128/7c3aed/333?text=缩略图-6.7.3', rules: '把大自然包进灯里！规则：先用竹篾搭好灯笼骨架，再将带有美丽花草的纸张小心地糊在骨架上。一个古色古香的艺术品就诞生了。' },
             ]
         },
     };
